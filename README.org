@@ -51,3 +51,56 @@ We can then run the program with:
 #+begin_src sh
 ./authenticate-printer
 #+end_src
+* Typical usage
+
+Typical usage is the following: First check whether the file is in A4
+format:
+
+#+begin_src sh
+pdfinfo file.pdf
+#+end_src
+
+If it is, we can check whether the printer is available with:
+
+#+begin_src sh
+lpq
+#+end_src
+
+We then send the file to the printer:
+
+#+begin_src sh
+lpr file.pdf
+#+end_src
+
+We then check whether the file is done processing.  This is the case
+when the file jumps from rank "active" to rank "1st":
+
+#+begin_src sh
+lpq +5
+#+end_src
+
+With output something similar to:
+
+#+begin_example
+myprinter is ready and printing
+Rank    Owner   Job     File(s)                         Total Size
+active  pieter  331     file.pdf                        151552 bytes
+myprinter is ready
+Rank    Owner   Job     File(s)                         Total Size
+1st     pieter  331     file.pdf                        151552 bytes
+#+end_example
+
+At this point, we can authenticate the printer for multiple jobs with:
+
+#+begin_src sh
+./authenticate-printer
+#+end_src
+
+We can then verify that the rank changes to "active" again with:
+
+#+begin_src sh
+lpq +5
+#+end_src
+
+The program will exit when all documents have been processed.
+
