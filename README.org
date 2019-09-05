@@ -1,0 +1,53 @@
+#+title: Authenticate Printer
+
+* Introduction
+
+A simple C client that authenticates to a printer server using CUPS.
+It makes use of the following library: [[https://github.com/pieterhijma/authenticate-printer-library][authenticate-printer-library]].
+
+* Prerequisites
+
+- A C compiler
+- Make
+- CUPS
+
+* Compilation
+
+First we clone the git submodule for the authenticate-printer-library
+from the root of this project:
+
+#+begin_src sh
+git submodule init
+git submodule update
+#+end_src
+
+We then compile the authenticate-printer-library:
+
+#+begin_src sh
+cd authenticate-printer-library
+make
+cd ..
+#+end_src
+
+We then compile the client:
+
+#+begin_src sh
+make
+#+end_src
+
+* Running
+
+To run the client, it is necessary to ensure that the system can find
+the shared library.  For example, add to environment variable
+LD_LIBRARY_PATH the path to the shared library and store it in a shell
+initialization script, for example ~.bashrc~:
+
+#+begin_src sh
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/authenticate-printer/authenticate-printer-library
+#+end_src
+
+We can then run the program with:
+
+#+begin_src sh
+./authenticate-printer
+#+end_src
