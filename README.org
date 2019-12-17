@@ -11,6 +11,8 @@ It makes use of the following library: [[https://github.com/pieterhijma/authenti
 - Make
 - CUPS
 
+In some distributions the CUPS header files are in a package ~libcups2-dev
+
 * Compilation
 
 First we clone the git submodule for the authenticate-printer-library

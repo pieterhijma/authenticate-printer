@@ -8,7 +8,7 @@ PROGNAME	= authenticate-printer
 
 
 $(PROGNAME): $(OBJ)
-	$(CC) $(LFLAGS) -o $@ $^
+	$(CC) -o $@ $^ $(LFLAGS)
 
 
 %.o: %.c
